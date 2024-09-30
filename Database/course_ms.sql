@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2024 at 12:35 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Sep 30, 2024 at 09:46 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,9 @@ CREATE TABLE `assignment_submissions` (
   `deadline_material_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `file_path` varchar(255) NOT NULL,
+  `total_marks` int(11) DEFAULT 0,
+  `obtained_marks` int(11) DEFAULT 0,
+  `is_get_marks` tinyint(2) DEFAULT 0,
   `submitted_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,9 +42,9 @@ CREATE TABLE `assignment_submissions` (
 -- Dumping data for table `assignment_submissions`
 --
 
-INSERT INTO `assignment_submissions` (`id`, `deadline_material_id`, `user_id`, `file_path`, `submitted_at`) VALUES
-(3, 6, 8, '8_9912070075.png', '2024-07-20 12:23:26'),
-(5, 11, 1, '1_3159759979.PNG', '2024-09-02 15:45:27');
+INSERT INTO `assignment_submissions` (`id`, `deadline_material_id`, `user_id`, `file_path`, `total_marks`, `obtained_marks`, `is_get_marks`, `submitted_at`) VALUES
+(3, 6, 8, '8_9912070075.png', 10, 8, 1, '2024-07-20 12:23:26'),
+(5, 11, 1, '1_3159759979.PNG', 10, 6, 1, '2024-09-02 15:45:27');
 
 -- --------------------------------------------------------
 
@@ -51,8 +54,13 @@ INSERT INTO `assignment_submissions` (`id`, `deadline_material_id`, `user_id`, `
 
 CREATE TABLE `courses` (
   `id` int(11) NOT NULL,
+  `code` varchar(100) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
+  `type` varchar(100) DEFAULT 'Course',
   `description` text DEFAULT NULL,
+  `program` varchar(100) DEFAULT NULL,
+  `semester` varchar(100) DEFAULT NULL,
+  `credit_hour` int(10) DEFAULT 3,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -60,11 +68,11 @@ CREATE TABLE `courses` (
 -- Dumping data for table `courses`
 --
 
-INSERT INTO `courses` (`id`, `name`, `description`, `created_at`) VALUES
-(1, 'Computer Science', 'This is for Computer science ', '2024-07-16 14:17:49'),
-(3, 'Programming Fundamentals', 'THis is programming', '2024-07-16 16:14:30'),
-(4, 'App development', 'This is App development', '2024-09-01 16:14:43'),
-(5, 'Software Engineering', 'This is software Engineering', '2024-09-01 16:15:20');
+INSERT INTO `courses` (`id`, `code`, `name`, `type`, `description`, `program`, `semester`, `credit_hour`, `created_at`) VALUES
+(1, '232', 'Computer Science', 'Course', 'This is Computer Science', 'DS', 'Semester 2', 4, '2024-07-16 14:17:49'),
+(3, '546', 'Programming Fundamentals', 'Alied', 'THis is programming', 'BS', 'Semester 5', 4, '2024-07-16 16:14:30'),
+(4, '545', 'App development', 'Course', 'This is App development', 'MCS', 'Semester 2', 3, '2024-09-01 16:14:43'),
+(5, '635', 'Software Engineering', 'Course', 'This is software Engineering', 'BS', 'Semester 6', 3, '2024-09-01 16:15:20');
 
 -- --------------------------------------------------------
 
@@ -200,9 +208,13 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `student_semester` varchar(100) DEFAULT NULL,
+  `instructor_education` varchar(255) DEFAULT NULL,
   `profile_photo` varchar(256) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `role_id` int(11) NOT NULL,
+  `isActive` tinyint(2) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -210,12 +222,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `address`, `phone`, `profile_photo`, `password`, `role_id`, `created_at`) VALUES
-(1, 'attia', 'student@gmail.com', 'bagh AJK', '03449586953', '1721137070_SCO.png', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 1, '2024-07-15 19:07:31'),
-(2, 'Aqsa123', 'ins@gmail.com', 'Bagh AJK', '03366645807', '1721137054_Python_Libraries_for_Data_Science__1_.jpg', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 2, '2024-07-15 18:40:09'),
-(3, 'Laiba', 'admin@gmail.com', 'bagh AJK', '03449586953', '3_Capture.PNG', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 3, '2024-07-15 19:07:31'),
-(8, 'kaleeem', 'kaleem@gmail.com', '', '', '1721137084_1208507_amazing_gaming_wallpapers_hd_3840x2160.jpg', '$2y$10$KnNvr1GTyeSPzToCCiZTS.25q.KSHj62/jQ8P4oaJHQAqIjztj.De', 1, '2024-07-16 10:18:01'),
-(9, 'AsadKhan2', 'asad2@gmail.com', '2 Village Waligai P/O Waligai Tehsel Domail District Bannu', '03362222222', '1721136406_University.png', '$2y$10$XvbEq4V5NY2Z3F.AiiIUNuIDRv85h9vkjEuYrznbRf3nrwoOTC1a2', 2, '2024-07-16 10:19:17');
+INSERT INTO `users` (`id`, `username`, `email`, `address`, `phone`, `department`, `student_semester`, `instructor_education`, `profile_photo`, `password`, `role_id`, `isActive`, `created_at`) VALUES
+(1, 'attia', 'student@gmail.com', 'bagh AJK', '03449586953', 'Computer Science', 'Semester 2', NULL, '1721137070_SCO.png', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 1, 1, '2024-07-15 19:07:31'),
+(2, 'Aqsa123', 'ins@gmail.com', 'Bagh AJK', '03366645807', 'Computer Science', '', 'MS COmputer Science', '1721137054_Python_Libraries_for_Data_Science__1_.jpg', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 2, 1, '2024-07-15 18:40:09'),
+(3, 'Laiba', 'admin@gmail.com', 'bagh AJK', '03449586953', 'Computer Science', '', NULL, '3_Capture.PNG', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 3, 1, '2024-07-15 19:07:31'),
+(8, 'kaleeem', 'kaleem@gmail.com', '', '', 'Computer Science', 'Semester 2', NULL, '1721137084_1208507_amazing_gaming_wallpapers_hd_3840x2160.jpg', '$2y$10$KnNvr1GTyeSPzToCCiZTS.25q.KSHj62/jQ8P4oaJHQAqIjztj.De', 1, 1, '2024-07-16 10:18:01'),
+(9, 'AsadKhan2', 'asad2@gmail.com', '2 Village Waligai P/O Waligai Tehsel Domail District Bannu', '03362222222', 'Computer Science', '', NULL, '1721136406_University.png', '$2y$10$XvbEq4V5NY2Z3F.AiiIUNuIDRv85h9vkjEuYrznbRf3nrwoOTC1a2', 2, 0, '2024-07-16 10:19:17');
 
 --
 -- Indexes for dumped tables
@@ -233,7 +245,8 @@ ALTER TABLE `assignment_submissions`
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`);
 
 --
 -- Indexes for table `course_instructor_assigned`
@@ -293,7 +306,7 @@ ALTER TABLE `assignment_submissions`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `course_instructor_assigned`

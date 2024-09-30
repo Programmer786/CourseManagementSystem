@@ -11,20 +11,19 @@
     // Fetch user data
     $user = getUserData($_SESSION['user_id']);
 
-    $title = "Course Registration";
+    $title = "Assignment Materials";
 
-    // Fetch course_registration
+    // Fetch assignment materials
     $user_id = $_SESSION['user_id']; // Assuming you have the user ID in session
     
-    $sql = "SELECT course_registration.*, courses.name AS course_name
-        FROM course_registration 
-        JOIN courses ON course_registration.course_id = courses.id
-        WHERE course_registration.user_id = ?";
+    $sql = "SELECT deadline_materials.*, courses.name AS course_name FROM deadline_materials 
+            JOIN courses ON deadline_materials.course_id = courses.id
+            WHERE deadline_materials.user_id = ? AND deadline_materials.type = 'assignment'";                         
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();   
 
-    $content = "../Student/course_registration_content.php";
+    $content = "../Instructor/deadline_materials_assignment_content.php";
     include '../setting/_Layout.php';
 ?>

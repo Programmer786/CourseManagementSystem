@@ -20,7 +20,7 @@
     }
 
     // Fetch user data with roles
-    $sql = "SELECT users.id, users.username, users.email, users.address, users.phone, users.profile_photo, users.password, users.role_id, users.created_at, roles.name as role_name
+    $sql = "SELECT users.id, users.username, users.email, users.address, users.phone, users.profile_photo, users.password, users.role_id, users.isActive, users.created_at, roles.name as role_name
     FROM users
     JOIN roles ON users.role_id = roles.id";
     $result = $conn->query($sql);

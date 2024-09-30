@@ -58,15 +58,19 @@
                 <form id="createCourseRegistrationForm" action="Controller/create_course_registration.php" method="POST">
                     <input type="hidden" name="action" value="create">
                     <div class="mb-3">
-                        <label for="createCourseId" class="form-label">Course</label>
+                        <label for="createCourseId" class="form-label">Course </label>
                         <select class="form-control" id="createCourseId" name="course_id" required>
-                            <?php
-                            $course_sql = "SELECT id, name FROM courses";
-                            $course_result = $conn->query($course_sql);
+                        <?php
+                            $course_sql = "SELECT id, name FROM courses WHERE semester = ?";
+                            $course_stmt = $conn->prepare($course_sql);
+                            $course_stmt->bind_param("s", $user['student_semester']); // Bind as string
+                            $course_stmt->execute();
+                            $course_result = $course_stmt->get_result();
                             while ($course = $course_result->fetch_assoc()) {
                                 echo "<option value=\"" . htmlspecialchars($course['id']) . "\">" . htmlspecialchars($course['name']) . "</option>";
                             }
-                            ?>
+                            $course_stmt->close();
+                        ?>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Create Course Registration</button>

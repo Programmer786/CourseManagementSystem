@@ -112,13 +112,25 @@
                                 <input type="number" class="form-control" name="phone" placeholder="Enter phone number" value="<?php echo htmlspecialchars($user['phone']); ?>" required/>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-12">
+                        <div class="col-sm-4 col-12">
 							<div class="mb-3">
 								<label class="form-label">Profile Photo</label>
 								<input class="form-control" type="file" name="profile_photo">
 							</div>
                         </div>
-                        <div class="col-sm-6 col-12">
+                        <div class="col-sm-4 col-12">
+							<div class="mb-3">
+								<label class="form-label">Department</label>
+                                <input type="text" class="form-control" name="department" placeholder="Department" value="<?php echo htmlspecialchars($user['department']); ?>" required/>
+							</div>
+                        </div>
+                        <div class="col-sm-4 col-12">
+							<div class="mb-3">
+								<label class="form-label">Highest Education</label>
+                                <input type="text" class="form-control" name="instructor_education" placeholder="Education" value="<?php echo htmlspecialchars($user['instructor_education']); ?>" required/>
+							</div>
+                        </div>
+                        <div class="col-sm-12 col-12">
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
                                 <textarea class="form-control" name="address" placeholder="Enter Address" rows="3" required><?php echo htmlspecialchars($user['address']); ?></textarea>

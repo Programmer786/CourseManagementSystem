@@ -112,13 +112,35 @@
                                 <input type="number" class="form-control" name="phone" placeholder="Enter phone number" value="<?php echo htmlspecialchars($user['phone']); ?>" required/>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-12">
+                        <div class="col-sm-4 col-12">
 							<div class="mb-3">
 								<label class="form-label">Profile Photo</label>
 								<input class="form-control" type="file" name="profile_photo">
 							</div>
                         </div>
-                        <div class="col-sm-6 col-12">
+                        <div class="col-sm-4 col-12">
+							<div class="mb-3">
+								<label class="form-label">Department</label>
+                                <input type="text" class="form-control" name="department" placeholder="Department" value="<?php echo htmlspecialchars($user['department']); ?>" required/>
+							</div>
+                        </div>
+                        <div class="col-sm-4 col-12">
+							<div class="mb-3">
+								<label class="form-label">Current Semester</label>
+                                <select class="form-control" id="editSemester" name="student_semester" required>
+                                    <option class="bg-warning" value="<?php echo htmlspecialchars($user['student_semester']); ?>" selected><?php echo htmlspecialchars($user['student_semester']); ?></option>
+                                    <option value="Semester 1">Semester 1</option>
+                                    <option value="Semester 2">Semester 2</option>
+                                    <option value="Semester 3">Semester 3</option>
+                                    <option value="Semester 4">Semester 4</option>
+                                    <option value="Semester 5">Semester 5</option>
+                                    <option value="Semester 6">Semester 6</option>
+                                    <option value="Semester 7">Semester 7</option>
+                                    <option value="Semester 8">Semester 8</option>
+                                </select>
+							</div>
+                        </div>
+                        <div class="col-sm-12 col-12">
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
                                 <textarea class="form-control" name="address" placeholder="Enter Address" rows="3" required><?php echo htmlspecialchars($user['address']); ?></textarea>

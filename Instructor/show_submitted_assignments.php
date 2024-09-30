@@ -13,12 +13,6 @@
 
     $title = "Assignment Submission";
 
-    // Check if the user is logged in
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: index.php");
-        exit;
-    }
-
     $user_id = $_SESSION['user_id'];
 
     // Fetch assignments submitted for the courses assigned to this instructor
@@ -27,6 +21,9 @@
             assignment_submissions.id,
             assignment_submissions.file_path,
             assignment_submissions.submitted_at,
+            assignment_submissions.total_marks,
+            assignment_submissions.obtained_marks,
+            assignment_submissions.is_get_marks,
             deadline_materials.title AS assignment_title,
             courses.name AS course_name,
             users.username AS student_name

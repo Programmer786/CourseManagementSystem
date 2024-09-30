@@ -88,33 +88,46 @@ switch ($_SESSION['role_id']) {
             </li>
     <?php } ?>
     <?php 
-        if ($_SESSION['role_id'] == 2) { 
-            ?>
-            <li>
-                <a href="../Instructor/deadline_materials.php">
-                    <i class="bi bi-border-all"></i>
-                    <span class="menu-text">Deadline Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="../Instructor/course_materials.php">
-                    <i class="bi bi-arrow-up-square"></i>
-                    <span class="menu-text">Course Materials</span>
-                </a>
-            </li>
-            <li>
-                <a href="../Instructor/students_record.php">
-                    <i class="bi bi-person-badge"></i>
-                    <span class="menu-text">Student Record</span>
-                </a>
-            </li>
-            <li>
-                <a href="../Instructor/show_submitted_assignments.php">
-                    <i class="bi bi-shield-fill-check"></i>
-                    <span class="menu-text">Show Submitted Assignments</span>
-                </a>
-            </li>
+    if ($_SESSION['role_id'] == 2) { 
+    ?>
+        <li>
+            <a href="../Instructor/deadline_materials_lecture.php">
+                <i class="bi bi-book"></i>
+                <span class="menu-text">Deadline Lecture Materials</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Instructor/deadline_materials_assignment.php">
+                <i class="bi bi-pencil-square"></i>
+                <span class="menu-text">Deadline Assignment Materials</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Instructor/deadline_materials_quiz.php">
+                <i class="bi bi-question-circle"></i>
+                <span class="menu-text">Deadline Quiz Materials</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Instructor/course_materials.php">
+                <i class="bi bi-arrow-up-square"></i>
+                <span class="menu-text">Course Materials</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Instructor/students_record.php">
+                <i class="bi bi-person-badge"></i>
+                <span class="menu-text">Student Record</span>
+            </a>
+        </li>
+        <li>
+            <a href="../Instructor/show_submitted_assignments.php">
+                <i class="bi bi-shield-fill-check"></i>
+                <span class="menu-text">Show Submitted Assignments</span>
+            </a>
+        </li>
     <?php } ?>
+
     <?php 
         if ($_SESSION['role_id'] == 1) { 
             ?>
@@ -125,9 +138,21 @@ switch ($_SESSION['role_id']) {
                 </a>
             </li>
             <li>
-                <a href="../Student/show_course_deadline_materials.php">
-                    <i class="bi bi-arrow-down-square"></i>
-                    <span class="menu-text">Show Course Deadline Materials</span>
+                <a href="../Student/show_deadline_materials_lecture.php">
+                    <i class="bi bi-book"></i>
+                    <span class="menu-text">Show Deadline Lecture Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="../Student/show_deadline_materials_assignment.php">
+                    <i class="bi bi-pencil-square"></i>
+                    <span class="menu-text">Show Deadline Assignment Materials</span>
+                </a>
+            </li>
+            <li>
+                <a href="../Student/show_deadline_materials_quiz.php">
+                    <i class="bi bi-question-circle"></i>
+                    <span class="menu-text">Show Deadline Quiz Materials</span>
                 </a>
             </li>
             <li>
@@ -139,7 +164,13 @@ switch ($_SESSION['role_id']) {
             <li>
                 <a href="../Student/submit_assignment.php">
                     <i class="bi bi-smartwatch"></i>
-                    <span class="menu-text">Submit Assignment</span>
+                    <span class="menu-text">Submit Assignment/Quiz</span>
+                </a>
+            </li>
+            <li>
+                <a href="../Student/show_submitted_assignment.php">
+                    <i class="bi bi-smartwatch"></i>
+                    <span class="menu-text">Show Assignment/Quiz Marks</span>
                 </a>
             </li>
     <?php } ?>

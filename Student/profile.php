@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 // Fetch user data
 $user = getUserData($_SESSION['user_id']);
 
-$title = "Users";
+$title = "Student Profile";
 $content = "../Student/profile_content.php";
 include '../setting/_Layout.php';
 ?>

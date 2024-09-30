@@ -9,6 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $address = $_POST['address'];
     $profile_photo = $_FILES['profile_photo'];
+    $department = $_POST['department'];
+    $instructor_education = $_POST['instructor_education'];
 
     // Handle file upload
     if ($profile_photo['error'] == 0) {
@@ -30,16 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Move new file to uploads directory
         if (move_uploaded_file($profile_photo['tmp_name'], $target_file)) {
-            $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ?, profile_photo = ? WHERE id = ?");
-            $stmt->bind_param("sssssi", $username, $email, $phone, $address, $new_filename, $user_id);
+            $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ?, department = ?, instructor_education = ?, profile_photo = ? WHERE id = ?");
+            $stmt->bind_param("sssssssi", $username, $email, $phone, $address, $department, $instructor_education, $new_filename, $user_id);
             $_SESSION['profile_photo'] = $new_filename;
         } else {
             echo "Sorry, there was an error uploading your file.";
             exit;
         }
     } else {
-        $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ? WHERE id = ?");
-        $stmt->bind_param("ssssi", $username, $email, $phone, $address, $user_id);
+        $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ?, department = ?, instructor_education = ? WHERE id = ?");
+        $stmt->bind_param("ssssssi", $username, $email, $phone, $address, $department, $instructor_education, $user_id);
     }
 
     if ($stmt->execute()) {

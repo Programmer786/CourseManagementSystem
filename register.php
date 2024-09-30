@@ -17,6 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
     $role_id = $_POST['role_id'];
+    $department = $_POST['department'];
+    $instructor_education = $_POST['instructor_education'];
+    $student_semester = $_POST['student_semester'];
 
     // Validate inputs
     if (empty($username) || empty($email) || empty($password) || empty($role_id)) {
@@ -36,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->close();
 
             // Insert new user
-            $stmt = $conn->prepare("INSERT INTO users (username, email, password, role_id) VALUES (?, ?, ?, ?)");
-            $stmt->bind_param("sssi", $username, $email, $password, $role_id);
+            $stmt = $conn->prepare("INSERT INTO users (username, email, department, instructor_education, student_semester, password, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssi", $username, $email, $department, $instructor_education, $student_semester, $password, $role_id);
             if ($stmt->execute()) {
                 $message = 'Registration successful!';
                 $message_class = 'alert-success';
@@ -99,9 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <label class="form-label">Password</label>
                                 <div class="input-group">
                                     <input type="password" class="form-control" name="password" placeholder="Enter password" required/>
-                                    <a href="#" class="input-group-text">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -111,6 +111,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <?php foreach ($roles as $role): ?>
                                         <option value="<?php echo $role['id']; ?>"><?php echo htmlspecialchars($role['name']); ?></option>
                                     <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                            <label class="form-label">Department</label>
+                            <input type="text" class="form-control" name="department" placeholder="Like Computer Science" value="Computer Science" required/>
+                            </div>
+                            <div class="mb-3">
+                            <label class="form-label">Highest Education</label>
+                            <input type="text" class="form-control" name="instructor_education" placeholder="Education For Instructor Only" value=""/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Current Semester (Student Only)</label>
+                                <select class="form-control" id="editSemester" name="student_semester" required>
+                                    <option class="bg-warning" value="" selected>None</option>
+                                    <option value="Semester 1">Semester 1</option>
+                                    <option value="Semester 2">Semester 2</option>
+                                    <option value="Semester 3">Semester 3</option>
+                                    <option value="Semester 4">Semester 4</option>
+                                    <option value="Semester 5">Semester 5</option>
+                                    <option value="Semester 6">Semester 6</option>
+                                    <option value="Semester 7">Semester 7</option>
+                                    <option value="Semester 8">Semester 8</option>
                                 </select>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">

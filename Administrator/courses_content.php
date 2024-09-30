@@ -9,7 +9,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
+                                <th scope="col">Code</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Program</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Credit Hour</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Actions</th>
@@ -22,7 +27,12 @@
                                     ?>
                                     <tr>
                                         <td><?php echo htmlspecialchars($row['id']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['code']); ?></td>
                                         <td><?php echo htmlspecialchars($row['name']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['type']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['program']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['semester']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['credit_hour']); ?></td>
                                         <td><?php echo htmlspecialchars($row['description']); ?></td>
                                         <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                                         <td>
@@ -35,7 +45,7 @@
                             } else {
                                 ?>
                                 <tr>
-                                    <td colspan="5">No courses found.</td>
+                                    <td colspan="10">No courses found.</td>
                                 </tr>
                                 <?php
                             }
@@ -61,8 +71,37 @@
                 <form id="createCourseForm" action="Controller/create_course.php" method="POST">
                     <input type="hidden" name="action" value="create">
                     <div class="mb-3">
+                        <label for="createCode" class="form-label">Code</label>
+                        <input type="text" class="form-control" id="createCode" name="code">
+                    </div>
+                    <div class="mb-3">
                         <label for="createName" class="form-label">Name</label>
                         <input type="text" class="form-control" id="createName" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="createType" class="form-label">Type</label>
+                        <input type="text" class="form-control" id="createType" name="type" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="createProgram" class="form-label">Program</label>
+                        <input type="text" class="form-control" id="createProgram" name="program">
+                    </div>
+                    <div class="mb-3">
+                        <label for="createSemester" class="form-label">Semester</label>
+                        <select class="form-control" id="createSemester" name="semester" required>
+                            <option value="Semester 1" selected>Semester 1</option>
+                            <option value="Semester 2">Semester 2</option>
+                            <option value="Semester 3">Semester 3</option>
+                            <option value="Semester 4">Semester 4</option>
+                            <option value="Semester 5">Semester 5</option>
+                            <option value="Semester 6">Semester 6</option>
+                            <option value="Semester 7">Semester 7</option>
+                            <option value="Semester 8">Semester 8</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="createCreditHour" class="form-label">Credit Hour</label>
+                        <input type="number" class="form-control" id="createCreditHour" name="credit_hour" value="3">
                     </div>
                     <div class="mb-3">
                         <label for="createDescription" class="form-label">Description</label>
@@ -88,8 +127,37 @@
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" name="id" id="editCourseId">
                     <div class="mb-3">
+                        <label for="editCode" class="form-label">Code</label>
+                        <input type="text" class="form-control" id="editCode" name="code">
+                    </div>
+                    <div class="mb-3">
                         <label for="editName" class="form-label">Name</label>
                         <input type="text" class="form-control" id="editName" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editType" class="form-label">Type</label>
+                        <input type="text" class="form-control" id="editType" name="type" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editProgram" class="form-label">Program</label>
+                        <input type="text" class="form-control" id="editProgram" name="program">
+                    </div>
+                    <div class="mb-3">
+                        <label for="editSemester" class="form-label">Semester</label>
+                        <select class="form-control" id="editSemester" name="semester" required>
+                            <option value="Semester 1" selected>Semester 1</option>
+                            <option value="Semester 2">Semester 2</option>
+                            <option value="Semester 3">Semester 3</option>
+                            <option value="Semester 4">Semester 4</option>
+                            <option value="Semester 5">Semester 5</option>
+                            <option value="Semester 6">Semester 6</option>
+                            <option value="Semester 7">Semester 7</option>
+                            <option value="Semester 8">Semester 8</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCreditHour" class="form-label">Credit Hour</label>
+                        <input type="number" class="form-control" id="editCreditHour" name="credit_hour" value="3">
                     </div>
                     <div class="mb-3">
                         <label for="editDescription" class="form-label">Description</label>
@@ -128,7 +196,12 @@
 <script>
 function setEditModalData(course) {
     document.getElementById('editCourseId').value = course.id;
+    document.getElementById('editCode').value = course.code;
     document.getElementById('editName').value = course.name;
+    document.getElementById('editType').value = course.type;
+    document.getElementById('editProgram').value = course.program;
+    document.getElementById('editSemester').value = course.semester;
+    document.getElementById('editCreditHour').value = course.credit_hour;
     document.getElementById('editDescription').value = course.description;
 }
 

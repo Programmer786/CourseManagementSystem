@@ -119,6 +119,12 @@
 							</div>
                         </div>
                         <div class="col-sm-6 col-12">
+							<div class="mb-3">
+								<label class="form-label">Department</label>
+                                <input type="text" class="form-control" name="department" placeholder="Department" value="<?php echo htmlspecialchars($user['department']); ?>" required/>
+							</div>
+                        </div>
+                        <div class="col-sm-6 col-12">
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
                                 <textarea class="form-control" name="address" placeholder="Enter Address" rows="3" required><?php echo htmlspecialchars($user['address']); ?></textarea>

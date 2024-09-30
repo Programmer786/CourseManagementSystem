@@ -11,13 +11,7 @@
     // Fetch user data
     $user = getUserData($_SESSION['user_id']);
 
-    $title = "Show Course Deadline Materials";
-
-    // Check if the user is logged in
-    if (!isset($_SESSION['user_id'])) {
-        header("Location: index.php");
-        exit;
-    }
+    $title = "Quiz Materials";
 
     // Fetch course_registration
     $user_id = $_SESSION['user_id']; // Assuming you have the user ID in session
@@ -31,13 +25,12 @@
             FROM course_registration 
             JOIN courses ON course_registration.course_id = courses.id
             JOIN deadline_materials ON course_registration.course_id = deadline_materials.course_id
-            WHERE course_registration.user_id = ? AND deadline_materials.to_date >= ?";
+            WHERE course_registration.user_id = ? AND deadline_materials.to_date >= ? AND deadline_materials.type = 'quiz'";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("is", $user_id, $current_date); // 'i' for integer, 's' for string
     $stmt->execute();
     $result = $stmt->get_result();   
 
-    $content = "../Student/show_course_deadline_materials_content.php";
+    $content = "../Student/show_deadline_materials_quiz_content.php";
     include '../setting/_Layout.php';
-
 ?>

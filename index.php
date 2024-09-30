@@ -129,9 +129,6 @@ if (!isset($_SESSION['user_id']) && isset($_COOKIE['user_id'])) {
                                 <label class="form-label">Password</label>
                                 <div class="input-group">
                                     <input type="password" name="password" class="form-control" placeholder="Enter password" required />
-                                    <a href="#" class="input-group-text">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">

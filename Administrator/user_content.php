@@ -14,6 +14,7 @@
                                 <th scope="col">Phone</th>
                                 <th scope="col">Role</th>
                                 <th scope="col">Created At</th>
+                                <th scope="col">Approval</th>
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -33,6 +34,13 @@
                                         <td><?php echo htmlspecialchars($row['role_name']); ?></td>
                                         <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                                         <td>
+                                            <?php if ($row['isActive'] == 0) { ?>
+                                                <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#approveUserModal" onclick="setApproveModalData(<?php echo $row['id']; ?>)">Approve</button>
+                                            <?php } else { ?>
+                                                <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#rejectUserModal" onclick="setRejectModalData(<?php echo $row['id']; ?>)">Reject</button>
+                                            <?php } ?>
+                                        </td>
+                                        <td>
                                             <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editUserModal" onclick="setEditModalData(<?php echo htmlspecialchars(json_encode($row)); ?>)"><i class="bi bi-pencil"></i></button>
                                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteUserModal" onclick="setDeleteModalData(<?php echo $row['id']; ?>)"><i class="bi bi-trash"></i></button>
                                         </td>
@@ -42,7 +50,7 @@
                             } else {
                                 ?>
                                 <tr>
-                                    <td colspan="8">No users found.</td>
+                                    <td colspan="9">No users found.</td>
                                 </tr>
                                 <?php
                             }
@@ -55,6 +63,7 @@
     </div>
 </div>
 <!-- Row end -->
+
 
 <!-- Edit User Modal -->
 <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
@@ -116,19 +125,72 @@
     </div>
 </div>
 
-<script>
-function setEditModalData(user) {
-    document.getElementById('editUserId').value = user.id;
-    document.getElementById('editUsername').value = user.username;
-    document.getElementById('editEmail').value = user.email;
-    document.getElementById('editAddress').value = user.address;
-    document.getElementById('editPhone').value = user.phone;
-}
+<!-- Approve User Modal -->
+<div class="modal fade" id="approveUserModal" tabindex="-1" aria-labelledby="approveUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="approveUserModalLabel">Approve User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to approve this user?</p>
+            </div>
+            <div class="modal-footer">
+                <form id="approveUserForm" action="Controller/approve_user.php" method="POST">
+                    <input type="hidden" name="id" id="approveUserId">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-function setDeleteModalData(id) {
-    document.getElementById('deleteUserId').value = id;
-}
+<!-- Reject User Modal -->
+<div class="modal fade" id="rejectUserModal" tabindex="-1" aria-labelledby="rejectUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rejectUserModalLabel">Reject User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to reject this user?</p>
+            </div>
+            <div class="modal-footer">
+                <form id="rejectUserForm" action="Controller/reject_user.php" method="POST">
+                    <input type="hidden" name="id" id="rejectUserId">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-warning">Reject</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setEditModalData(user) {
+        document.getElementById('editUserId').value = user.id;
+        document.getElementById('editUsername').value = user.username;
+        document.getElementById('editEmail').value = user.email;
+        document.getElementById('editAddress').value = user.address;
+        document.getElementById('editPhone').value = user.phone;
+    }
+
+    function setDeleteModalData(id) {
+        document.getElementById('deleteUserId').value = id;
+    }
+
+    function setApproveModalData(id) {
+        document.getElementById('approveUserId').value = id;
+    }
+
+    function setRejectModalData(id) {
+        document.getElementById('rejectUserId').value = id;
+    }
 </script>
+
 
 <?php
 $conn->close();
