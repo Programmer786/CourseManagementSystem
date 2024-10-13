@@ -72,19 +72,23 @@ switch ($_SESSION['role_id']) {
                     <span class="menu-text">Users</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="#!">
+            <li>
+                <a href="../Administrator/courses.php">
                     <i class="bi bi-ui-checks-grid"></i>
-                    <span class="menu-text">Course &amp; Materials</span>
+                    <span class="menu-text">Courses</span>
                 </a>
-                <ul class="treeview-menu">
-                    <li>
-                        <a href="../Administrator/courses.php">Courses</a>
-                    </li>
-                    <li>
-                        <a href="../Administrator/courses_assign.php">Courses Assign</a>
-                    </li>
-                </ul>
+            </li>
+            <li>
+                <a href="../Administrator/courses_assign.php">
+                    <i class="bi bi-arrow-up-square"></i>
+                    <span class="menu-text">Courses Assign</span>
+                </a>
+            </li>
+            <li>
+                <a href="../Administrator/students_record.php">
+                    <i class="bi bi-person-badge"></i>
+                    <span class="menu-text">Student Record</span>
+                </a>
             </li>
     <?php } ?>
     <?php 

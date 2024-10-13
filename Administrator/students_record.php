@@ -59,12 +59,10 @@
     $user_id = $_SESSION['user_id']; // Assuming you have the user ID in session
 
     // Start: Fetch courses assigned to the instructor
-    $sql = "SELECT course_instructor_assigned.*, courses.name AS course_name, courses.semester AS course_semester	, courses.id AS course_id 
+    $sql = "SELECT course_instructor_assigned.*, courses.name AS course_name, courses.semester AS course_semester, courses.id AS course_id 
             FROM course_instructor_assigned 
-            JOIN courses ON course_instructor_assigned.course_id = courses.id
-            WHERE course_instructor_assigned.instructor_id = ?";
+            JOIN courses ON course_instructor_assigned.course_id = courses.id";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $course_result = $stmt->get_result(); 
     $stmt->close();
@@ -87,7 +85,7 @@
         $stmt->close();
     }
 
-    $content = "../Instructor/students_record_content.php";
+    $content = "../Administrator/students_record_content.php";
     include '../setting/_Layout.php';
 
 ?>

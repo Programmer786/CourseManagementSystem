@@ -64,9 +64,9 @@
                                 <select class="form-control" id="createCourseId" name="course_id" required onchange="fetchCourseDetails(this.value)">
                                     <option value="" selected disabled>Please Select Course</option>
                                     <?php
-                                        $course_sql = "SELECT id, name FROM courses WHERE semester = ?";
+                                        $course_sql = "SELECT id, name FROM courses";
                                         $course_stmt = $conn->prepare($course_sql);
-                                        $course_stmt->bind_param("s", $user['student_semester']); // Bind as string
+                                        // $course_stmt->bind_param("s", $user['student_semester']); // Bind as string
                                         $course_stmt->execute();
                                         $course_result = $course_stmt->get_result();
                                         while ($course = $course_result->fetch_assoc()) {

@@ -20,7 +20,7 @@
     }
 
     // Fetch course instructor assignments
-    $sql = "SELECT course_instructor_assigned.*, courses.name AS course_name, users.username AS instructor_name 
+    $sql = "SELECT course_instructor_assigned.*, courses.name AS course_name, courses.semester AS course_semester, users.username AS instructor_name 
             FROM course_instructor_assigned
             JOIN courses ON course_instructor_assigned.course_id = courses.id
             JOIN users ON course_instructor_assigned.instructor_id = users.id

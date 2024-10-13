@@ -63,10 +63,10 @@
                         <select class="form-control" id="createCourseId" name="course_id" required>
                             <?php
                             // Fetch courses for the select options
-                            $course_sql = "SELECT id, name FROM courses";
+                            $course_sql = "SELECT id, name, semester FROM courses";
                             $course_result = $conn->query($course_sql);
                             while ($course = $course_result->fetch_assoc()) {
-                                echo "<option value=\"" . htmlspecialchars($course['id']) . "\">" . htmlspecialchars($course['name']) . "</option>";
+                                echo "<option value=\"" . htmlspecialchars($course['id']) . "\">" . htmlspecialchars($course['name']) . "(" . htmlspecialchars($course['semester']). ")" . "</option>";
                             }
                             ?>
                         </select>
