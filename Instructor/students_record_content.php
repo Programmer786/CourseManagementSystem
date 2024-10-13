@@ -31,13 +31,11 @@
                     <table id="example" class="display nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th scope="col">Profile Photo</th>
-                                <th scope="col">Username</th>
+                                <th scope="col">Roll No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Session</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Created At</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,15 +44,11 @@
                                 while ($row = $result->fetch_assoc()) {
                             ?>
                                     <tr>
-                                        <th scope="row">
-                                            <img class="rounded-circle img-3x me-2" src="../assets/uploads/<?php echo htmlspecialchars($row['profile_photo']); ?>" alt="Profile Photo" />
-                                        </th>
+                                        <td><?php echo htmlspecialchars($row['user_id']); ?></td>
                                         <td><?php echo htmlspecialchars($row['username']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['student_semester']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['student_session']); ?></td>
                                         <td><?php echo htmlspecialchars($row['email']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['address']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['phone']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['role_name']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                                     </tr>
                                 <?php
                                 }

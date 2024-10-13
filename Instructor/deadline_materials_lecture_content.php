@@ -3,15 +3,15 @@
     <div class="col-xxl-12">
         <div class="card mb-4">
             <div class="card-body">
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createMaterialModal">Create Material</button>
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createMaterialModal">Upload Lecture Material</button>
                 <div class="table-responsive">
-                    <table class="table align-middle table-hover m-0">
+                    <table id="example" class="table align-middle table-hover m-0 display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Course</th>
-                                <th scope="col">Title</th>
+                                <th scope="col">Topic</th>
                                 <th scope="col">Type</th>
-                                <th scope="col">Content</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">From Date</th>
                                 <th scope="col">To Date</th>
                                 <th scope="col">File</th>
@@ -23,6 +23,7 @@
                             <?php
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
+                                    $file_path = '../assets/uploads/' . $row['file_path'];
                             ?>
                                     <tr>
                                         <td><?php echo htmlspecialchars($row['course_name']); ?></td>
@@ -31,7 +32,15 @@
                                         <td><?php echo htmlspecialchars($row['content']); ?></td>
                                         <td><?php echo htmlspecialchars($row['from_date']); ?></td>
                                         <td><?php echo htmlspecialchars($row['to_date']); ?></td>
-                                        <td><?php echo htmlspecialchars($row['file_path']); ?></td>
+                                        <td>
+                                            <?php if (!empty($row['file_path']) && file_exists($file_path)) { ?>
+                                                <a href="<?php echo htmlspecialchars($file_path); ?>" class="btn btn-sm btn-secondary" download>
+                                                    Download
+                                                </a>
+                                            <?php } else {
+                                                echo '';
+                                            } ?>
+                                        </td>
                                         <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                                         <td>
                                             <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editMaterialModal" onclick="setEditModalData(<?php echo htmlspecialchars(json_encode($row)); ?>)"><i class="bi bi-pencil"></i></button>
@@ -58,12 +67,12 @@
 </div>
 <!-- Row end -->
 
-<!-- Create Material Modal -->
+<!-- Upload Lecture Material Modal -->
 <div class="modal fade" id="createMaterialModal" tabindex="-1" aria-labelledby="createMaterialModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createMaterialModalLabel">Create Material</h5>
+                <h5 class="modal-title" id="createMaterialModalLabel">Upload Lecture Material</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -91,19 +100,17 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="createTitle" class="form-label">Title</label>
+                        <label for="createTitle" class="form-label">Topic</label>
                         <input type="text" class="form-control" id="createTitle" name="title" required>
                     </div>
                     <div class="mb-3">
                         <label for="createType" class="form-label">Type</label>
                         <select class="form-control" id="createType" name="type" required>
-                            <option value="lecture">Lecture</option>
-                            <option value="assignment">Assignment</option>
-                            <option value="quiz">Quiz</option>
+                            <option value="lecture" selected>Lecture</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="createContent" class="form-label">Content</label>
+                        <label for="createContent" class="form-label">Description</label>
                         <textarea class="form-control" id="createContent" name="content"></textarea>
                     </div>
                     <div class="mb-3">
@@ -161,19 +168,17 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="editTitle" class="form-label">Title</label>
+                        <label for="editTitle" class="form-label">Topic</label>
                         <input type="text" class="form-control" id="editTitle" name="title" required>
                     </div>
                     <div class="mb-3">
                         <label for="editType" class="form-label">Type</label>
                         <select class="form-control" id="editType" name="type" required>
-                            <option value="lecture">Lecture</option>
-                            <option value="assignment">Assignment</option>
-                            <option value="quiz">Quiz</option>
+                            <option value="lecture" selected>Lecture</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="editContent" class="form-label">Content</label>
+                        <label for="editContent" class="form-label">Description</label>
                         <textarea class="form-control" id="editContent" name="content"></textarea>
                     </div>
                     <div class="mb-3">

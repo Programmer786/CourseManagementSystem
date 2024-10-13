@@ -3,17 +3,18 @@
     <div class="col-xxl-12">
         <div class="card mb-4">
             <div class="card-body">
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createCourseModal">Create Course</button>
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createCourseModal">Add Course</button>
                 <div class="table-responsive">
                     <table class="table align-middle table-hover m-0">
                         <thead>
                             <tr>
                                 <th scope="col">ID</th>
                                 <th scope="col">Code</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Course Name</th>
                                 <th scope="col">Type</th>
                                 <th scope="col">Program</th>
                                 <th scope="col">Semester</th>
+                                <th scope="col">Session</th> <!-- New column for Session -->
                                 <th scope="col">Credit Hour</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Created At</th>
@@ -32,6 +33,7 @@
                                         <td><?php echo htmlspecialchars($row['type']); ?></td>
                                         <td><?php echo htmlspecialchars($row['program']); ?></td>
                                         <td><?php echo htmlspecialchars($row['semester']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['session']); ?></td> <!-- Display session -->
                                         <td><?php echo htmlspecialchars($row['credit_hour']); ?></td>
                                         <td><?php echo htmlspecialchars($row['description']); ?></td>
                                         <td><?php echo htmlspecialchars($row['created_at']); ?></td>
@@ -59,12 +61,12 @@
 </div>
 <!-- Row end -->
 
-<!-- Create Course Modal -->
+<!-- Add Course Modal -->
 <div class="modal fade" id="createCourseModal" tabindex="-1" aria-labelledby="createCourseModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createCourseModalLabel">Create Course</h5>
+                <h5 class="modal-title" id="createCourseModalLabel">Add Course</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -75,7 +77,7 @@
                         <input type="text" class="form-control" id="createCode" name="code">
                     </div>
                     <div class="mb-3">
-                        <label for="createName" class="form-label">Name</label>
+                        <label for="createName" class="form-label">Course Name</label>
                         <input type="text" class="form-control" id="createName" name="name" required>
                     </div>
                     <div class="mb-3">
@@ -97,7 +99,12 @@
                             <option value="Semester 6">Semester 6</option>
                             <option value="Semester 7">Semester 7</option>
                             <option value="Semester 8">Semester 8</option>
+                            <option value="Repeater">Repeater</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="createSession" class="form-label">Session</label> <!-- New input field for session -->
+                        <input type="text" class="form-control" id="createSession" name="session">
                     </div>
                     <div class="mb-3">
                         <label for="createCreditHour" class="form-label">Credit Hour</label>
@@ -107,7 +114,7 @@
                         <label for="createDescription" class="form-label">Description</label>
                         <textarea class="form-control" id="createDescription" name="description" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Create Course</button>
+                    <button type="submit" class="btn btn-primary">Add Course</button>
                 </form>
             </div>
         </div>
@@ -131,7 +138,7 @@
                         <input type="text" class="form-control" id="editCode" name="code">
                     </div>
                     <div class="mb-3">
-                        <label for="editName" class="form-label">Name</label>
+                        <label for="editName" class="form-label">Course Name</label>
                         <input type="text" class="form-control" id="editName" name="name" required>
                     </div>
                     <div class="mb-3">
@@ -153,7 +160,12 @@
                             <option value="Semester 6">Semester 6</option>
                             <option value="Semester 7">Semester 7</option>
                             <option value="Semester 8">Semester 8</option>
+                            <option value="Repeater">Repeater</option>
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editSession" class="form-label">Session</label> <!-- New input field for session -->
+                        <input type="text" class="form-control" id="editSession" name="session">
                     </div>
                     <div class="mb-3">
                         <label for="editCreditHour" class="form-label">Credit Hour</label>
@@ -201,6 +213,7 @@ function setEditModalData(course) {
     document.getElementById('editType').value = course.type;
     document.getElementById('editProgram').value = course.program;
     document.getElementById('editSemester').value = course.semester;
+    document.getElementById('editSession').value = course.session; // New line for session
     document.getElementById('editCreditHour').value = course.credit_hour;
     document.getElementById('editDescription').value = course.description;
 }

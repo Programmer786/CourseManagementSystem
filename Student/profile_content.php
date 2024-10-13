@@ -126,6 +126,12 @@
                         </div>
                         <div class="col-sm-4 col-12">
 							<div class="mb-3">
+								<label class="form-label">Session</label>
+                                <input type="text" class="form-control" name="student_session" placeholder="Like 2024-2028" value="<?php echo htmlspecialchars($user['student_session']); ?>" required/>
+							</div>
+                        </div>
+                        <div class="col-sm-4 col-12">
+							<div class="mb-3">
 								<label class="form-label">Current Semester</label>
                                 <select class="form-control" id="editSemester" name="student_semester" required>
                                     <option class="bg-warning" value="<?php echo htmlspecialchars($user['student_semester']); ?>" selected><?php echo htmlspecialchars($user['student_semester']); ?></option>
@@ -137,10 +143,11 @@
                                     <option value="Semester 6">Semester 6</option>
                                     <option value="Semester 7">Semester 7</option>
                                     <option value="Semester 8">Semester 8</option>
+                                    <option value="Repeater">Repeater</option>
                                 </select>
 							</div>
                         </div>
-                        <div class="col-sm-12 col-12">
+                        <div class="col-sm-8 col-12">
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
                                 <textarea class="form-control" name="address" placeholder="Enter Address" rows="3" required><?php echo htmlspecialchars($user['address']); ?></textarea>

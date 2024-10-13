@@ -75,7 +75,7 @@
     $result = null;
     if ($course_id) {
         // Fetch registered users for the selected course
-        $sql = "SELECT course_registration.*, users.username, users.email, users.address, users.phone, users.profile_photo, users.created_at, roles.name AS role_name
+        $sql = "SELECT course_registration.*, users.*
                 FROM course_registration
                 JOIN users ON course_registration.user_id = users.id
                 JOIN roles ON users.role_id = roles.id

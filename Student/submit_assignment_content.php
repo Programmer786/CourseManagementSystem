@@ -4,7 +4,7 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table align-middle table-hover m-0">
+                    <table id="example" class="table align-middle table-hover m-0 display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Course Name</th>

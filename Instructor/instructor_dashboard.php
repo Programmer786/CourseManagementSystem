@@ -52,6 +52,17 @@ $result_quizzes = $stmt_quizzes->get_result();
 $total_quizzes = $result_quizzes->fetch_assoc()['total_quizzes'];
 $stmt_quizzes->close();
 
+// SQL query to get courses assigned to the instructor
+$course_sql = "SELECT c.*
+                FROM course_instructor_assigned cia
+                JOIN courses c ON cia.course_id = c.id
+                WHERE cia.instructor_id = ?";
+$stmt_course_details = $conn->prepare($course_sql);
+$stmt_course_details->bind_param("i", $user_id);
+$stmt_course_details->execute();
+$course_details_result = $stmt_course_details->get_result();
+$stmt_course_details->close();
+
 $title = "Instructor Dashboard";
 $content = "../Instructor/instructor_dashboard_content.php";
 include '../setting/_Layout.php';

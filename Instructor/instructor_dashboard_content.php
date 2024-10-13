@@ -1,3 +1,18 @@
+<style>
+    .table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    white-space: nowrap;
+}
+
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+</style>
 <!-- Row starts -->
 <div class="row">
     <div class="col-xxl-3 col-sm-6 col-12">
@@ -54,3 +69,50 @@
     </div>
 </div>
 <!-- Row ends -->
+
+<!-- Table for displaying all assigned courses -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Courses Assigned to You</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Course ID</th>
+                                <th scope="col">Course Code</th>
+                                <th scope="col">Course Name</th>
+                                <th scope="col">Program</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Credit Hours</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if ($course_details_result->num_rows > 0) { 
+                                while ($row = $course_details_result->fetch_assoc()) { ?>
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($row['id']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['code']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['name']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['program']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['semester']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['credit_hour']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['description']); ?></td>
+                                    </tr>
+                                <?php } 
+                            } else { ?>
+                                <tr>
+                                    <td colspan="7" class="text-center">No courses assigned to you yet.</td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

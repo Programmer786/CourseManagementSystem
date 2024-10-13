@@ -105,7 +105,7 @@ switch ($_SESSION['role_id']) {
         <li>
             <a href="../Instructor/deadline_materials_quiz.php">
                 <i class="bi bi-question-circle"></i>
-                <span class="menu-text">Deadline Quiz Materials</span>
+                <span class="menu-text">Quiz Materials</span>
             </a>
         </li>
         <li>

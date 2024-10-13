@@ -4,14 +4,14 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table align-middle table-hover m-0">
+                    <table id="example" class="table align-middle table-hover m-0 display nowrap" style="width:100%">
                         <thead>
                             <tr>
                                 <th scope="col">Course Name</th>
                                 <th scope="col">Course Description</th>
-                                <th scope="col">Material Title</th>
-                                <th scope="col">Material Type</th>
-                                <th scope="col">Content</th>
+                                <th scope="col">Lecture Topic</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Lecture Description</th>
                                 <th scope="col">Download</th>
                                 <th scope="col">From Date</th>
                                 <th scope="col">To Date</th>

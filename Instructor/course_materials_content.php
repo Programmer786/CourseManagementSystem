@@ -3,14 +3,14 @@
     <div class="col-xxl-12">
         <div class="card mb-4">
             <div class="card-body">
-                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createMaterialModal">Create Material</button>
+                <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createMaterialModal">Upload Course Material</button>
                 <div class="table-responsive">
                     <table class="table align-middle table-hover m-0">
                         <thead>
                             <tr>
-                                <th scope="col">Course</th>
-                                <th scope="col">Title</th>
-                                <th scope="col">Content</th>
+                                <th scope="col">Course Name</th>
+                                <th scope="col">Topic</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">File</th>
                                 <th scope="col">Created At</th>
                                 <th scope="col">Actions</th>
@@ -52,19 +52,19 @@
 </div>
 <!-- Row end -->
 
-<!-- Create Material Modal -->
+<!-- Upload Course Material Modal -->
 <div class="modal fade" id="createMaterialModal" tabindex="-1" aria-labelledby="createMaterialModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createMaterialModalLabel">Create Material</h5>
+                <h5 class="modal-title" id="createMaterialModalLabel">Upload Course Material</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="createMaterialForm" action="Controller/create_course_material.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="action" value="create">
                     <div class="mb-3">
-                        <label for="createCourseId" class="form-label">Course</label>
+                        <label for="createCourseId" class="form-label">Course Name</label>
                         <select class="form-control" id="createCourseId" name="course_id" required>
                             <?php
                             $user_id = $_SESSION['user_id'];
@@ -85,11 +85,11 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="createTitle" class="form-label">Title</label>
+                        <label for="createTitle" class="form-label">Topic</label>
                         <input type="text" class="form-control" id="createTitle" name="title" required>
                     </div>
                     <div class="mb-3">
-                        <label for="createContent" class="form-label">Content</label>
+                        <label for="createContent" class="form-label">Description</label>
                         <textarea class="form-control" id="createContent" name="content"></textarea>
                     </div>
                     <div class="mb-3">
@@ -117,7 +117,7 @@
                     <input type="hidden" name="id" id="editMaterialId">
                     <input type="hidden" name="existing_file_path" id="editExistingFilePath">
                     <div class="mb-3">
-                        <label for="editCourseId" class="form-label">Course</label>
+                        <label for="editCourseId" class="form-label">Course Name</label>
                         <select class="form-control" id="editCourseId" name="course_id" required>
                             <?php
                             $user_id = $_SESSION['user_id'];
@@ -139,11 +139,11 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="editTitle" class="form-label">Title</label>
+                        <label for="editTitle" class="form-label">Topic</label>
                         <input type="text" class="form-control" id="editTitle" name="title" required>
                     </div>
                     <div class="mb-3">
-                        <label for="editContent" class="form-label">Content</label>
+                        <label for="editContent" class="form-label">Description</label>
                         <textarea class="form-control" id="editContent" name="content"></textarea>
                     </div>
                     <div class="mb-3">
