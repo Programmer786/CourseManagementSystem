@@ -31,3 +31,35 @@
 
 <!-- Custom JS files -->
 <script src="../assets/js/custom.js"></script>
+
+<!-- Start: the below for datatable -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export to Excel',
+                    className: 'btn btn-excel'
+                },
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    className: 'btn btn-print'
+                }
+            ],
+            scrollX: true,
+            pageLength: 100,
+            lengthMenu: [ [100, 200, 300, 400, 500], [100, 200, 300, 400, 500] ]
+        });
+    });
+</script>
+<!-- End: the below for datatable -->
