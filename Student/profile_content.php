@@ -132,6 +132,12 @@
                         </div>
                         <div class="col-sm-4 col-12">
 							<div class="mb-3">
+								<label class="form-label">Program</label>
+                                <input type="text" class="form-control" name="student_program" placeholder="Like BS or DS" value="<?php echo htmlspecialchars($user['student_program']); ?>" required/>
+							</div>
+                        </div>
+                        <div class="col-sm-4 col-12">
+							<div class="mb-3">
 								<label class="form-label">Current Semester</label>
                                 <select class="form-control" id="editSemester" name="student_semester" required>
                                     <option class="bg-warning" value="<?php echo htmlspecialchars($user['student_semester']); ?>" selected><?php echo htmlspecialchars($user['student_semester']); ?></option>

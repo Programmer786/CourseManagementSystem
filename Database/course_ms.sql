@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2024 at 10:19 AM
+-- Generation Time: Oct 20, 2024 at 04:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -73,7 +73,9 @@ INSERT INTO `courses` (`id`, `code`, `name`, `type`, `description`, `program`, `
 (1, '232', 'Computer Science', 'Course', 'This is a Computer Science', 'DS', 'Semester 2', '2022-2026', 4, '2024-07-16 14:17:49'),
 (3, '546', 'Programming Fundamentals', 'Alied', 'THis is programming', 'BS', 'Semester 5', '2023-2027', 4, '2024-07-16 16:14:30'),
 (4, '545', 'App development', 'Course', 'This is App development', 'MCS', 'Semester 2', '2022-2024', 3, '2024-09-01 16:14:43'),
-(5, '635', 'Software Engineering', 'Course', 'This is software Engineering', 'BS', 'Semester 6', '2024-2028', 3, '2024-09-01 16:15:20');
+(5, '635', 'Software Engineering', 'Course', 'This is software Engineering', 'BS', 'Semester 6', '2024-2028', 3, '2024-09-01 16:15:20'),
+(8, '12548', 'HTML', 'Course', 'This is a Repeater for 3rd Semester', 'BS', 'Repeater', '2022-2026', 3, '2024-10-13 08:50:29'),
+(9, '423432', 'Course', 'Et ad sit officia ne', 'Sequi voluptas incid', 'Aut et libero repudi', 'Repeater', 'Delectus numquam of', 99, '2024-10-20 09:30:23');
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,9 @@ CREATE TABLE `course_instructor_assigned` (
 INSERT INTO `course_instructor_assigned` (`id`, `course_id`, `instructor_id`, `assigned_at`) VALUES
 (3, 1, 2, '2024-07-16 18:58:16'),
 (4, 3, 2, '2024-07-17 13:11:37'),
-(5, 4, 2, '2024-09-02 15:39:14');
+(5, 4, 2, '2024-09-02 15:39:14'),
+(6, 8, 2, '2024-10-13 08:50:58'),
+(7, 5, 9, '2024-10-13 09:03:10');
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,8 @@ INSERT INTO `course_registration` (`id`, `course_id`, `user_id`, `created_at`) V
 (1, 1, 1, '2024-07-18 13:17:24'),
 (2, 1, 8, '2024-07-20 07:43:24'),
 (3, 3, 1, '2024-08-29 09:39:13'),
-(4, 4, 1, '2024-09-01 16:21:45');
+(4, 4, 1, '2024-09-01 16:21:45'),
+(5, 8, 1, '2024-10-13 08:54:38');
 
 -- --------------------------------------------------------
 
@@ -212,6 +217,7 @@ CREATE TABLE `users` (
   `department` varchar(255) DEFAULT NULL,
   `student_semester` varchar(100) DEFAULT NULL,
   `student_session` varchar(100) DEFAULT NULL,
+  `student_program` varchar(100) DEFAULT NULL,
   `instructor_education` varchar(255) DEFAULT NULL,
   `profile_photo` varchar(256) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -224,12 +230,12 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `address`, `phone`, `department`, `student_semester`, `student_session`, `instructor_education`, `profile_photo`, `password`, `role_id`, `isActive`, `created_at`) VALUES
-(1, 'attia', 'student@gmail.com', 'bagh AJK', '03449586953', 'Computer Science', 'Semester 2', '2022-2026', NULL, '1721137070_SCO.png', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 1, 1, '2024-07-15 19:07:31'),
-(2, 'Aqsa123', 'ins@gmail.com', 'Bagh AJK', '03366645807', 'Computer Science', '', NULL, 'MS COmputer Science', '1721137054_Python_Libraries_for_Data_Science__1_.jpg', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 2, 1, '2024-07-15 18:40:09'),
-(3, 'Laiba', 'admin@gmail.com', 'bagh AJK', '03449586953', 'Computer Science', '', NULL, NULL, '3_msg2.png', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 3, 1, '2024-07-15 19:07:31'),
-(8, 'kaleeem', 'kaleem@gmail.com', '', '', 'Computer Science', 'Semester 2', '2022-2026', NULL, '1721137084_1208507_amazing_gaming_wallpapers_hd_3840x2160.jpg', '$2y$10$KnNvr1GTyeSPzToCCiZTS.25q.KSHj62/jQ8P4oaJHQAqIjztj.De', 1, 1, '2024-07-16 10:18:01'),
-(9, 'AsadKhan2', 'asad2@gmail.com', '2 Village Waligai P/O Waligai Tehsel Domail District Bannu', '03362222222', 'Computer Science', '', NULL, NULL, '1721136406_University.png', '$2y$10$XvbEq4V5NY2Z3F.AiiIUNuIDRv85h9vkjEuYrznbRf3nrwoOTC1a2', 2, 1, '2024-07-16 10:19:17');
+INSERT INTO `users` (`id`, `username`, `email`, `address`, `phone`, `department`, `student_semester`, `student_session`, `student_program`, `instructor_education`, `profile_photo`, `password`, `role_id`, `isActive`, `created_at`) VALUES
+(1, 'attia', 'student@gmail.com', 'bagh AJK', '03449586953', 'Computer Science', 'Semester 2', '2022-2026', 'BS', NULL, '1721137070_SCO.png', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 1, 1, '2024-07-15 19:07:31'),
+(2, 'Aqsa123', 'ins@gmail.com', 'Bagh AJK', '03366645807', 'Computer Science', '', NULL, NULL, 'MS Computer Science', '1721137054_Python_Libraries_for_Data_Science__1_.jpg', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 2, 1, '2024-07-15 18:40:09'),
+(3, 'Laiba', 'admin@gmail.com', 'bagh AJK', '03449586953', 'Computer Science', '', NULL, NULL, NULL, '3_msg2.png', '$2y$10$cQPzUVw8ZD8K2t2kaVCM6.Hu.wfMX4lu7xbz8OGSDp0OhqIYStS2.', 3, 1, '2024-07-15 19:07:31'),
+(8, 'kaleeem', 'kaleem@gmail.com', '', '', 'Computer Science', 'Semester 2', '2022-2026', NULL, NULL, '1721137084_1208507_amazing_gaming_wallpapers_hd_3840x2160.jpg', '$2y$10$KnNvr1GTyeSPzToCCiZTS.25q.KSHj62/jQ8P4oaJHQAqIjztj.De', 1, 1, '2024-07-16 10:18:01'),
+(9, 'AsadKhan2', 'asad2@gmail.com', '2 Village Waligai P/O Waligai Tehsel Domail District Bannu', '03362222222', 'Computer Science', '', NULL, NULL, NULL, '1721136406_University.png', '$2y$10$XvbEq4V5NY2Z3F.AiiIUNuIDRv85h9vkjEuYrznbRf3nrwoOTC1a2', 2, 1, '2024-07-16 10:19:17');
 
 --
 -- Indexes for dumped tables
@@ -308,13 +314,13 @@ ALTER TABLE `assignment_submissions`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `course_instructor_assigned`
 --
 ALTER TABLE `course_instructor_assigned`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `course_materials`
@@ -326,7 +332,7 @@ ALTER TABLE `course_materials`
 -- AUTO_INCREMENT for table `course_registration`
 --
 ALTER TABLE `course_registration`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `deadline_materials`

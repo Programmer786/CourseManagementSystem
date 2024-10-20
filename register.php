@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $department = $_POST['department'];
     $instructor_education = $_POST['instructor_education'];
     $student_semester = $_POST['student_semester'];
+    $student_program = $_POST['student_program'];
 
     // Validate inputs
     if (empty($username) || empty($email) || empty($password) || empty($role_id)) {
@@ -39,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->close();
 
             // Insert new user
-            $stmt = $conn->prepare("INSERT INTO users (username, email, department, instructor_education, student_semester, password, role_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssi", $username, $email, $department, $instructor_education, $student_semester, $password, $role_id);
+            $stmt = $conn->prepare("INSERT INTO users (username, email, department, instructor_education, student_semester, student_program, password, role_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssssi", $username, $email, $department, $instructor_education, $student_semester, $student_program, $password, $role_id);
             if ($stmt->execute()) {
                 $message = 'Registration successful!';
                 $message_class = 'alert-success';
@@ -134,6 +135,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <option value="Semester 7">Semester 7</option>
                                     <option value="Semester 8">Semester 8</option>
                                 </select>
+                            </div>
+                            <div class="mb-3">
+                            <label class="form-label">Program</label>
+                            <input type="text" class="form-control" name="student_program" placeholder="Like BS or DS" value=""/>
                             </div>
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="form-check m-0">

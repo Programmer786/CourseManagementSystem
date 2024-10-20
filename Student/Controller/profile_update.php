@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $profile_photo = $_FILES['profile_photo'];
     $department = $_POST['department'];
     $student_session = $_POST['student_session'];
+    $student_program = $_POST['student_program'];
     $student_semester = $_POST['student_semester'];
 
     // Handle file upload
@@ -33,16 +34,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Move new file to uploads directory
         if (move_uploaded_file($profile_photo['tmp_name'], $target_file)) {
-            $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ?, department = ?, student_session = ?, student_semester = ?, profile_photo = ? WHERE id = ?");
-            $stmt->bind_param("ssssssssi", $username, $email, $phone, $address, $department, $student_session, $student_semester, $new_filename, $user_id);
+            $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ?, department = ?, student_session = ?, student_program = ?, student_semester = ?, profile_photo = ? WHERE id = ?");
+            $stmt->bind_param("sssssssssi", $username, $email, $phone, $address, $department, $student_session, $student_program, $student_semester, $new_filename, $user_id);
             $_SESSION['profile_photo'] = $new_filename;
         } else {
             echo "Sorry, there was an error uploading your file.";
             exit;
         }
     } else {
-        $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ?, department = ?, student_session = ?, student_semester = ? WHERE id = ?");
-        $stmt->bind_param("sssssssi", $username, $email, $phone, $address, $department, $student_session, $student_semester, $user_id);
+        $stmt = $conn->prepare("UPDATE users SET username = ?, email = ?, phone = ?, address = ?, department = ?, student_session = ?, student_program = ?, student_semester = ? WHERE id = ?");
+        $stmt->bind_param("ssssssssi", $username, $email, $phone, $address, $department, $student_session, $student_program, $student_semester, $user_id);
     }
 
     if ($stmt->execute()) {
