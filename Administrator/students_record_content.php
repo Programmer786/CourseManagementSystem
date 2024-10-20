@@ -35,6 +35,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Semester</th>
                                 <th scope="col">Session</th>
+                                <th scope="col">Program</th>
                                 <th scope="col">Email</th>
                             </tr>
                         </thead>
@@ -48,6 +49,7 @@
                                         <td><?php echo htmlspecialchars($row['username']); ?></td>
                                         <td><?php echo htmlspecialchars($row['student_semester']); ?></td>
                                         <td><?php echo htmlspecialchars($row['student_session']); ?></td>
+                                        <td><?php echo htmlspecialchars($row['course_program']); ?></td>
                                         <td><?php echo htmlspecialchars($row['email']); ?></td>
                                     </tr>
                                 <?php

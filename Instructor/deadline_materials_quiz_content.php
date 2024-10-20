@@ -28,15 +28,7 @@
                                         <td><?php echo htmlspecialchars($row['title']); ?></td>
                                         <td><?php echo htmlspecialchars($row['type']); ?></td>
                                         <td><?php echo htmlspecialchars($row['content']); ?></td>
-                                        <td>
-                                            <?php if (!empty($row['file_path']) && file_exists($file_path)) { ?>
-                                                <a href="<?php echo htmlspecialchars($file_path); ?>" class="btn btn-sm btn-secondary" download>
-                                                    Download
-                                                </a>
-                                            <?php } else {
-                                                echo '';
-                                            } ?>
-                                        </td>
+                                        <td><?php echo htmlspecialchars($row['file_path']); ?></td>
                                         <td><?php echo htmlspecialchars($row['created_at']); ?></td>
                                         <td>
                                             <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#editMaterialModal" onclick="setEditModalData(<?php echo htmlspecialchars(json_encode($row)); ?>)"><i class="bi bi-pencil"></i></button>
